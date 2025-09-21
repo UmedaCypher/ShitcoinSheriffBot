@@ -132,4 +132,3 @@ if __name__ == "__main__":
         
         print("Patrouille terminée. Prochaine ronde dans 5 minutes.")
         time.sleep(300) # Le bot se met en veille pendant 300 secondes (5 minutes)
-
