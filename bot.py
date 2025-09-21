@@ -3,6 +3,7 @@ import asyncio
 import os
 import time
 import requests # La librairie pour faire des appels API
+import json # Ajout de la librairie pour un affichage propre
 
 # --- CONFIGURATION SÉCURISÉE ---
 # Ces variables sont lues depuis l'environnement de Render.
@@ -83,11 +84,26 @@ async def patrouille_du_sherif():
     print("Début de la patrouille...")
     nouveaux_tokens = get_new_tokens_from_birdeye()
     
+    # ---- NOUVELLE LOGIQUE POUR L'ANALYSE ----
+    a_imprime_un_rapport = False
+    # ----------------------------------------
+
     for token in nouveaux_tokens:
         token_address = token.get("address") # L'adresse du contrat du token
         
         # Si le token a une adresse et qu'on ne l'a jamais vu avant
         if token_address and token_address not in tokens_deja_vus:
+            
+            # ---- NOUVELLE LOGIQUE POUR L'ANALYSE ----
+            # On imprime le rapport complet du premier nouveau suspect trouvé
+            if not a_imprime_un_rapport:
+                print("\n--- RAPPORT D'ENQUÊTE COMPLET SUR LE PREMIER SUSPECT ---")
+                # On utilise json.dumps pour un affichage propre et lisible
+                print(json.dumps(token, indent=2))
+                print("---------------------------------------------------\n")
+                a_imprime_un_rapport = True
+            # ----------------------------------------
+
             token_symbol = token.get('tokenSymbol', 'N/A')
             tx_count = token.get('txCount', 0)
             
