@@ -1,6 +1,9 @@
 # Étape 1: Utiliser une image Python officielle et légère
 FROM python:3.11-slim
 
+# Ajout d'une variable d'environnement pour que les logs s'affichent instantanément
+ENV PYTHONUNBUFFERED=1
+
 # Étape 2: Définir le dossier de travail à l'intérieur du conteneur
 WORKDIR /app
 
