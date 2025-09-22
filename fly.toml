@@ -1,0 +1,11 @@
+app = 'shitcoinsheriffbot'
+primary_region = 'cdg'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+# Cette section définit notre bot comme un "worker" et non un service web.
+# Cela désactive les vérifications de port et l'auto-stop.
+[processes]
+  worker = 'python3 bot.py'
+
