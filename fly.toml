@@ -1,3 +1,8 @@
+# fly.toml app configuration file
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = 'shitcoinsheriffbot'
 primary_region = 'cdg'
 
@@ -8,4 +13,3 @@ primary_region = 'cdg'
 # Cela désactive les vérifications de port et l'auto-stop.
 [processes]
   worker = 'python3 bot.py'
-
